@@ -1,0 +1,68 @@
+CREATE TABLE Cliente (
+    ID_Cliente INTO PRIMARY KEY,
+    Nombre NVARCHAR(15)
+    Apellido NVARCHAR(15)
+    Informacion NVARCHAR(15)
+);
+
+CREATE TABLE ProductoFinanciero (
+    ID_Producto INTO PRIMARY KEY,
+    Producto NVARCHAR(30)
+);
+
+//Auditoria Cliente:
+ALTER TABLE Cliente
+ADD Fecha_creada DATETIME DEFAULT(),
+Usuario_creacion NVARCHAR(15)
+Usuario_Auditado NVARCHAR(15)
+
+//Auditoria ProductoFinanciero:
+ALTER TABLE Cliente
+ADD Fecha_creada DATETIME DEFAULT(),
+Usuario_creacion NVARCHAR(15)
+Usuario_Auditado NVARCHAR(15)
+
+//Indice de busqueda rapida:
+CREATE INDEX IX_TipoCuenta on Cuenta (Tipo_cuenta);
+
+//Relacion ente el cliente y la cuenta
+ALTER TABLE Cuenta
+ADD CONSTRAINT Cuenta_Cliente
+FOREIGN KEY (ID_Cliente)
+REFERENCES Cliente (ID_Cliente);
+
+//Relacion Cuenta-Producto
+ALTER TABLE Cuenta
+ADD CONSTRAINT Cuenta_Producto
+FOREIGN KEY (ID_Producto)
+REFERENCES Producto (ID_Cliente);
+
+
+//Scripts
+
+INSERT INTO Cliente (ID_Cliente, Nombre, apellido)
+VALUES
+(1, Michell, Murallas)
+.
+.
+
+INSERT INTO Cliente (ID_Productos, Producto, Descripcion)
+VALUES
+(1, Corriente,Nomina)
+.
+.
+
+
+//Procedimiento almacnado:
+CREATE PROCEDURE ProductoDelCleinteAndSaldo
+@ClienteID INT,
+ProductoID INT
+AS
+BEGIN
+   SELECT
+    ID_Cliente
+    ID_Producto
+   FROM 
+     Cliente
+   INER JOIN
+   END;
